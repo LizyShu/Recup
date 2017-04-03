@@ -13,6 +13,9 @@ class PROVA_API AProvaGameMode : public AGameMode
 {
 	GENERATED_BODY()
 	
+public:
+
+	AProvaGameMode();
 	
 	
 	

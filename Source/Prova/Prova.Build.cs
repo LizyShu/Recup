@@ -6,7 +6,7 @@ public class Prova : ModuleRules
 {
 	public Prova(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "UMG" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

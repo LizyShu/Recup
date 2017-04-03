@@ -2,6 +2,13 @@
 
 #include "Prova.h"
 #include "ProvaGameMode.h"
+#include "MatrixPlController.h"
+
+AProvaGameMode::AProvaGameMode() {
+
+	PlayerControllerClass = AMatrixPlController::StaticClass();
+
+}
 
 
 
