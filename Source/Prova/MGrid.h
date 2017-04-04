@@ -22,12 +22,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	bool Verificar(class AMatrixGame* Click);
+
 private:
 	UPROPERTY(EditAnywhere)
 		USceneComponent* Root;
+
 	TSubclassOf<class AMatrixGame> Um;
+	
+
 	TArray<class AMatrixGame*> Matrix;
 
 	int index;
+
+	void Show();
 	
 };
