@@ -3,6 +3,7 @@
 #include "Prova.h"
 #include "MatrixGame.h"
 #include "MatrixPawn.h"
+#include "MGrid.h"
 #include "PaperSpriteComponent.h"
 #include "PaperSprite.h"
 
@@ -36,16 +37,6 @@ void AMatrixGame::Tick(float DeltaTime)
 }
 
 
-void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
-	UE_LOG(LogTemp, Warning, TEXT("It works!"));
-
-	UWorld* World = GetWorld();
-	if (World != nullptr) {
-		AMatrixPawn* Pawn = Cast<AMatrixPawn>(UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn());
-	}
-}
-
-
 void AMatrixGame::SetIndex(int NewIndex) {
 	Index = NewIndex;
 }
@@ -65,5 +56,36 @@ void AMatrixGame::ChangeSprite() {
 
 void AMatrixGame::SetOwnerGrid(class AMGrid* Grid) {
 	OwnerGrid = Grid;
+}
+
+void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
+	UE_LOG(LogTemp, Warning, TEXT("It works!"));
+
+	/*UWorld* World = GetWorld();
+	if (World != nullptr) {
+	AMatrixPawn* Pawn = Cast<AMatrixPawn>(UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn());
+	}*/
+
+	if (!OwnerGrid->GetFreeze()) {
+		if (OwnerGrid->Verificar(this)) {
+			Sprite->SetSprite(FirstSprite);
+			OwnerGrid->SetFreeze(true);
+			UWorld* World = GetWorld();
+
+			if (World) {
+				GetWorldTimerManager().SetTimer(ShowClicked, this, &AMatrixGame::Wait, 0.5f, true);
+
+			}
+		}
+		else {
+			UE_LOG(LogTemp, Warning, TEXT("GameOver!"));
+			
+		}
+	}
+}
+
+void AMatrixGame::Wait() {
+	Sprite->SetSprite(ShineSprite);
+	OwnerGrid->SetFreeze(false);
 }
 

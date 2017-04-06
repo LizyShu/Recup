@@ -22,7 +22,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	//bool Verificar(class AMatrixGame* Click);
+	bool Verificar(class AMatrixGame* Click);
 	void SetFreeze(bool NewFreeze);
 	bool GetFreeze();
 

@@ -40,9 +40,13 @@ private:
 		class AMGrid* OwnerGrid;
 	UPROPERTY(EditAnywhere)
 		int Index;
+	FTimerHandle ShowClicked;
+
 	
 	UFUNCTION()
 		void OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent);
+
+	void Wait();
 
 	
 };

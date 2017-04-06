@@ -25,9 +25,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void SetPonto(int NewPonto);
+	UFUNCTION(BluePrintCallable, Category = "Ponto")
+		int GetPonto();
 	
 private:
 
 	UPROPERTY(EditAnywhere)
 		UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere)
+		int Ponto;
 };

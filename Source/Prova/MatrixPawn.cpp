@@ -26,6 +26,7 @@ AMatrixPawn::AMatrixPawn()
 void AMatrixPawn::BeginPlay()
 {
 	Super::BeginPlay();
+	Ponto = 0;
 	
 }
 
@@ -41,5 +42,13 @@ void AMatrixPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AMatrixPawn::SetPonto(int NewPonto) {
+	Ponto = NewPonto;
+}
+
+int AMatrixPawn::GetPonto() {
+	return Ponto;
 }
 

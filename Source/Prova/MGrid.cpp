@@ -86,6 +86,7 @@ void AMGrid::BeginPlay()
 		Matrix.Add(C8);
 		Matrix.Add(C9);
 		
+		
 		Pisca();
 		
 	}
@@ -112,8 +113,10 @@ bool AMGrid::GetFreeze() {
 void AMGrid::Pisca() {
 
 	int Random = FMath::RandRange(0, 8);
-	//if (!bTurned) {
 	
+
+	//if (!bTurned) {
+		
 		Sequence.Add(Random);
 		Index = 0;
 		bLight = false;
@@ -122,10 +125,11 @@ void AMGrid::Pisca() {
 	
 
 
-
 	UWorld* World = GetWorld();
 	if (World) {
 		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+		Random++;
+
 	}
 
 }
@@ -154,12 +158,29 @@ void AMGrid::Show() {
 		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
 	}
 
+
 }
 
-/*bool AMGrid::Verificar(AMatrixGame * Click)
+bool AMGrid::Verificar(class AMatrixGame * Click)
 {
+
+	if (Sequence[NumOfClicks] == Click->GetIndex()) {
+		NumOfClicks++;
+		if (NumOfClicks == Sequence.Num()) {
+			UWorld* World = GetWorld();
+			if (World) {
+				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn();
+				AMatrixPawn* MatrixPawn = Cast<AMatrixPawn>(MPawn);
+				MatrixPawn->SetPonto(MatrixPawn->GetPonto() + 100);
+				UE_LOG(LogTemp, Warning, TEXT("Pontos: %d"));
+			}
+		}
+		return true;
+	}
 
 
 	return false;
-}*/
+}
+
+
 
