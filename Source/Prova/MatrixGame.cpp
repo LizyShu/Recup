@@ -58,6 +58,10 @@ void AMatrixGame::SetOwnerGrid(class AMGrid* Grid) {
 	OwnerGrid = Grid;
 }
 
+void AMatrixGame::SetOwnerGrid2(class AMGrid2* Grid2) {
+	OwnerGrid2 = Grid2;
+}
+
 void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
 	UE_LOG(LogTemp, Warning, TEXT("It works!"));
 

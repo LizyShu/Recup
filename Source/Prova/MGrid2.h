@@ -3,16 +3,16 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "MGrid.generated.h"
+#include "MGrid2.generated.h"
 
 UCLASS()
-class PROVA_API AMGrid : public AActor
+class PROVA_API AMGrid2 : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AMGrid();
+	AMGrid2();
 
 protected:
 	// Called when the game starts or when spawned
@@ -22,6 +22,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
 	bool Verificar(class AMatrixGame* Click);
 	void SetFreeze(bool NewFreeze);
 	bool GetFreeze();
@@ -30,10 +31,10 @@ private:
 	UPROPERTY(EditAnywhere)
 		USceneComponent* Root;
 	/*UPROPERTY(EditAnywhere)
-		bool bTurned;*/
+	bool bTurned;*/
 
 	TSubclassOf<class AMatrixGame> Um;
-	
+
 
 	TArray<class AMatrixGame*> Matrix;
 	TArray<int> Sequence;
@@ -43,13 +44,12 @@ private:
 	bool bLight;
 	FTimerHandle MCard;
 	int NumOfClicks;
-	
+
 
 	void Pisca();
 	void Show();
 
-	UFUNCTION()
-		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-			int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	
 	
 };

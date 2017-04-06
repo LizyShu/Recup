@@ -26,6 +26,7 @@ public:
 	int GetIndex();
 	void ChangeSprite();
 	void SetOwnerGrid(class AMGrid* Grid);
+	void SetOwnerGrid2(class AMGrid2* Grid2);
 
 
 private:
@@ -38,6 +39,7 @@ private:
 		class UPaperSprite* ShineSprite;
 
 		class AMGrid* OwnerGrid;
+		class AMGrid2* OwnerGrid2;
 	UPROPERTY(EditAnywhere)
 		int Index;
 	FTimerHandle ShowClicked;

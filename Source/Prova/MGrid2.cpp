@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Prova.h"
-#include "MGrid.h"
+#include "MGrid2.h"
 #include "MatrixGame.h"
 #include "MatrixPawn.h"
 #include "Blueprint/UserWidget.h"
@@ -14,39 +14,30 @@
 
 
 // Sets default values
-AMGrid::AMGrid()
+AMGrid2::AMGrid2()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = Root;
 	ConstructorHelpers::FObjectFinder<UClass> Card01(TEXT("Blueprint'/Game/Blueprints/Card01.Card01_C'"));
-	
-
-	//UE_LOG(LogTemp, Warning, TEXT("Construtor"));
 
 	if (Card01.Succeeded()) {
 		Um = Cast<UClass>(Card01.Object);
-		//UE_LOG(LogTemp, Warning, TEXT("Foi no cast"));
 	}
-	
+
 }
 
 // Called when the game starts or when spawned
-void AMGrid::BeginPlay()
+void AMGrid2::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	UWorld* World = GetWorld();
-	UE_LOG(LogTemp, Warning, TEXT("Foi no BeginPlay"));
 	if (World) {
 		FActorSpawnParameters SpawnParameters;
 		AMatrixGame* C1 = World->SpawnActor<AMatrixGame>(Um, FVector(1000.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
-		/*if (C1 != nullptr) {
-			UE_LOG(LogTemp, Warning, TEXT("Foi no c1"));
-		}*/
 		AMatrixGame* C2 = World->SpawnActor<AMatrixGame>(Um, FVector(1000.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
 		AMatrixGame* C3 = World->SpawnActor<AMatrixGame>(Um, FVector(1000.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
 		AMatrixGame* C4 = World->SpawnActor<AMatrixGame>(Um, FVector(800.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
@@ -55,6 +46,12 @@ void AMGrid::BeginPlay()
 		AMatrixGame* C7 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
 		AMatrixGame* C8 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
 		AMatrixGame* C9 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C10 = World->SpawnActor<AMatrixGame>(Um, FVector(800.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C11 = World->SpawnActor<AMatrixGame>(Um, FVector(800.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C12 = World->SpawnActor<AMatrixGame>(Um, FVector(800.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C13 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C14 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C15 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
 
 		C1->SetIndex(0);
 		C2->SetIndex(1);
@@ -65,16 +62,28 @@ void AMGrid::BeginPlay()
 		C7->SetIndex(6);
 		C8->SetIndex(7);
 		C9->SetIndex(8);
+		C10->SetIndex(9);
+		C11->SetIndex(10);
+		C12->SetIndex(11);
+		C13->SetIndex(12);
+		C14->SetIndex(13);
+		C15->SetIndex(14);
 
-		C1->SetOwnerGrid(this);
-		C2->SetOwnerGrid(this);
-		C3->SetOwnerGrid(this);
-		C4->SetOwnerGrid(this);
-		C5->SetOwnerGrid(this);
-		C6->SetOwnerGrid(this);
-		C7->SetOwnerGrid(this);
-		C8->SetOwnerGrid(this);
-		C9->SetOwnerGrid(this);
+		C1->SetOwnerGrid2(this);
+		C2->SetOwnerGrid2(this);
+		C3->SetOwnerGrid2(this);
+		C4->SetOwnerGrid2(this);
+		C5->SetOwnerGrid2(this);
+		C6->SetOwnerGrid2(this);
+		C7->SetOwnerGrid2(this);
+		C8->SetOwnerGrid2(this);
+		C9->SetOwnerGrid2(this);
+		C10->SetOwnerGrid2(this);
+		C11->SetOwnerGrid2(this);
+		C12->SetOwnerGrid2(this);
+		C13->SetOwnerGrid2(this);
+		C14->SetOwnerGrid2(this);
+		C15->SetOwnerGrid2(this);
 
 		Matrix.Add(C1);
 		Matrix.Add(C2);
@@ -85,49 +94,53 @@ void AMGrid::BeginPlay()
 		Matrix.Add(C7);
 		Matrix.Add(C8);
 		Matrix.Add(C9);
-		
-		
+		Matrix.Add(C10);
+		Matrix.Add(C11);
+		Matrix.Add(C12);
+		Matrix.Add(C13);
+		Matrix.Add(C14);
+		Matrix.Add(C15);
+
+
 		Pisca();
-		
+
 	}
-	
-	
-	
+
 }
 
 // Called every frame
-void AMGrid::Tick(float DeltaTime)
+void AMGrid2::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-void AMGrid::SetFreeze(bool NewFreeze) {
+void AMGrid2::SetFreeze(bool NewFreeze) {
 	bFreeze = NewFreeze;
 }
 
-bool AMGrid::GetFreeze() {
+bool AMGrid2::GetFreeze() {
 	return bFreeze;
 }
 
-void AMGrid::Pisca() {
+void AMGrid2::Pisca() {
 
 	int Random = FMath::RandRange(0, 8);
-	
+
 
 	//if (!bTurned) {
-		
-		Sequence.Add(Random);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
-	
+
+	Sequence.Add(Random);
+	Index = 0;
+	bLight = false;
+	NumOfClicks = 0;
+	bFreeze = true;
+
 
 
 	UWorld* World = GetWorld();
 	if (World) {
-		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid2::Show, 1.0f, true);
 		Random++;
 
 	}
@@ -136,8 +149,8 @@ void AMGrid::Pisca() {
 
 
 
-void AMGrid::Show() {
-	
+void AMGrid2::Show() {
+
 	int ActualSequence = Sequence[Index];
 	Matrix[ActualSequence]->ChangeSprite();
 
@@ -146,7 +159,7 @@ void AMGrid::Show() {
 		GetWorldTimerManager().ClearTimer(MCard);
 		Index++;
 		if (Index < Sequence.Num()) {
-			GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+			GetWorldTimerManager().SetTimer(MCard, this, &AMGrid2::Show, 1.0f, true);
 		}
 		else {
 			bFreeze = false;
@@ -155,13 +168,13 @@ void AMGrid::Show() {
 	else {
 		bLight = true;
 		GetWorldTimerManager().ClearTimer(MCard);
-		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid2::Show, 1.0f, true);
 	}
 
 
 }
 
-bool AMGrid::Verificar(class AMatrixGame * Click)
+bool AMGrid2::Verificar(class AMatrixGame * Click)
 {
 
 	if (Sequence[NumOfClicks] == Click->GetIndex()) {
@@ -181,19 +194,4 @@ bool AMGrid::Verificar(class AMatrixGame * Click)
 
 	return false;
 }
-
-void AMGrid::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
-
-	if ((OtherActor != nullptr) && (OtherActor->IsA(AMatrixPawn::StaticClass()))) {
-		AMatrixPawn* Grid = Cast<AMatrixPawn>(OtherActor);
-		UWorld* World = GetWorld();
-		if (Grid->GetPonto() == 100 && World != nullptr) {
-			UGameplayStatics::OpenLevel(World, "Mapa2");
-		}
-	}
-}
-
-
-
 
