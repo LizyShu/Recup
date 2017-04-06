@@ -25,11 +25,11 @@ AMGrid::AMGrid()
 	ConstructorHelpers::FObjectFinder<UClass> Card01(TEXT("Blueprint'/Game/Blueprints/Card01.Card01_C'"));
 	
 
-	UE_LOG(LogTemp, Warning, TEXT("Construtor"));
+	//UE_LOG(LogTemp, Warning, TEXT("Construtor"));
 
 	if (Card01.Succeeded()) {
 		Um = Cast<UClass>(Card01.Object);
-		UE_LOG(LogTemp, Warning, TEXT("Foi no cast"));
+		//UE_LOG(LogTemp, Warning, TEXT("Foi no cast"));
 	}
 	
 }
@@ -85,8 +85,13 @@ void AMGrid::BeginPlay()
 		Matrix.Add(C7);
 		Matrix.Add(C8);
 		Matrix.Add(C9);
+		
+		Pisca();
+		
 	}
-
+	
+	
+	
 }
 
 // Called every frame
@@ -96,15 +101,65 @@ void AMGrid::Tick(float DeltaTime)
 
 }
 
-void AMGrid::Show() {
+void AMGrid::SetFreeze(bool NewFreeze) {
+	bFreeze = NewFreeze;
+}
+
+bool AMGrid::GetFreeze() {
+	return bFreeze;
+}
+
+void AMGrid::Pisca() {
+
+	int Random = FMath::RandRange(0, 8);
+	//if (!bTurned) {
 	
+		Sequence.Add(Random);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+	
+
+
+
+	UWorld* World = GetWorld();
+	if (World) {
+		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+	}
 
 }
 
-bool AMGrid::Verificar(AMatrixGame * Click)
+
+
+void AMGrid::Show() {
+	
+	int ActualSequence = Sequence[Index];
+	Matrix[ActualSequence]->ChangeSprite();
+
+	if (bLight) {
+		bLight = false;
+		GetWorldTimerManager().ClearTimer(MCard);
+		Index++;
+		if (Index < Sequence.Num()) {
+			GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+		}
+		else {
+			bFreeze = false;
+		}
+	}
+	else {
+		bLight = true;
+		GetWorldTimerManager().ClearTimer(MCard);
+		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+	}
+
+}
+
+/*bool AMGrid::Verificar(AMatrixGame * Click)
 {
 
 
 	return false;
-}
+}*/
 

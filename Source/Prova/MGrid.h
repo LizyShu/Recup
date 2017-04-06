@@ -22,19 +22,30 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	bool Verificar(class AMatrixGame* Click);
+	//bool Verificar(class AMatrixGame* Click);
+	void SetFreeze(bool NewFreeze);
+	bool GetFreeze();
 
 private:
 	UPROPERTY(EditAnywhere)
 		USceneComponent* Root;
+	/*UPROPERTY(EditAnywhere)
+		bool bTurned;*/
 
 	TSubclassOf<class AMatrixGame> Um;
 	
 
 	TArray<class AMatrixGame*> Matrix;
+	TArray<int> Sequence;
 
-	int index;
+	int Index;
+	bool bFreeze;
+	bool bLight;
+	FTimerHandle MCard;
+	int NumOfClicks;
+	
 
+	void Pisca();
 	void Show();
 	
 };
