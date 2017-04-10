@@ -112,10 +112,10 @@ bool AMGrid::GetFreeze() {
 
 void AMGrid::Pisca() {
 
-	int Random = FMath::RandRange(0, 2);
-	int Random2 = FMath::RandRange(3, 5);
-	int Random3 = FMath::RandRange(6, 8);
-	
+	int Random = FMath::RandRange(0, 8);
+	int Random2 = FMath::RandRange(0, 8);
+	int Random3 = FMath::RandRange(0, 8);
+
 
 	//if (!bTurned) {
 	if (Random) {
@@ -125,7 +125,7 @@ void AMGrid::Pisca() {
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random2) {
+	if (Random2 != Random) {
 
 		Sequence.Add(Random2);
 		Index = 0;
@@ -133,7 +133,7 @@ void AMGrid::Pisca() {
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random3) {
+	if (Random3 != Random2 != Random) {
 
 		Sequence.Add(Random3);
 		Index = 0;
@@ -190,7 +190,6 @@ bool AMGrid::Verificar(class AMatrixGame * Click)
 				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn();
 				AMatrixPawn* MatrixPawn = Cast<AMatrixPawn>(MPawn);
 				MatrixPawn->SetPonto(MatrixPawn->GetPonto() + 100);
-				UE_LOG(LogTemp, Warning, TEXT("Pontos: %d"));
 			}
 		}
 		return true;
@@ -206,8 +205,9 @@ void AMGrid::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	if ((OtherActor != nullptr) && (OtherActor->IsA(AMatrixPawn::StaticClass()))) {
 		AMatrixPawn* Grid = Cast<AMatrixPawn>(OtherActor);
 		UWorld* World = GetWorld();
-		if (Grid->GetPonto() == 300 && World != nullptr) {
+		if (Grid->GetPonto() == 100 && World != nullptr) {
 			UGameplayStatics::OpenLevel(World, "Mapa2");
+			UE_LOG(LogTemp, Warning, TEXT("Pox. Level"));
 		}
 	}
 }

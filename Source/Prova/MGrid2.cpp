@@ -125,10 +125,7 @@ bool AMGrid2::GetFreeze() {
 
 void AMGrid2::Pisca() {
 
-	int Random = FMath::RandRange(0, 4);
-	int Random2 = FMath::RandRange(5, 9);
-	int Random3 = FMath::RandRange(10, 12);
-	int Random4 = FMath::RandRange(13, 15);
+	int Random = FMath::RandRange(0, 14);
 
 
 	//if (!bTurned) {
@@ -140,25 +137,25 @@ void AMGrid2::Pisca() {
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random2) {
+	if (Random) {
 
-		Sequence.Add(Random2);
+		Sequence.Add(Random);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random3) {
+	if (Random) {
 
-		Sequence.Add(Random3);
+		Sequence.Add(Random);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random4) {
+	if (Random) {
 
-		Sequence.Add(Random3);
+		Sequence.Add(Random);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;

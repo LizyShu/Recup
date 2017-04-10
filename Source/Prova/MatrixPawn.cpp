@@ -26,7 +26,7 @@ AMatrixPawn::AMatrixPawn()
 void AMatrixPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	Ponto = 0;
+	//Ponto;
 	
 }
 

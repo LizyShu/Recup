@@ -35,5 +35,5 @@ private:
 		UCameraComponent* Camera;
 
 	UPROPERTY(EditAnywhere)
-		int Ponto;
+		int Ponto =100.f;
 };

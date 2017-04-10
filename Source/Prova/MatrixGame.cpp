@@ -46,6 +46,7 @@ int AMatrixGame::GetIndex() {
 }
 
 void AMatrixGame::ChangeSprite() {
+	
 	if (Sprite->GetSprite() == FirstSprite) {
 		Sprite->SetSprite(ShineSprite);
 	}
@@ -53,6 +54,7 @@ void AMatrixGame::ChangeSprite() {
 		Sprite->SetSprite(FirstSprite);
 	}
 }
+
 
 void AMatrixGame::SetOwnerGrid(class AMGrid* Grid) {
 	OwnerGrid = Grid;
@@ -63,8 +65,10 @@ void AMatrixGame::SetOwnerGrid2(class AMGrid2* Grid2) {
 }
 
 void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
-	UE_LOG(LogTemp, Warning, TEXT("It works!"));
-
+	ChangeSprite();
+	//UE_LOG(LogTemp, Warning, TEXT("It works!"));
+	
+	
 	UWorld* World = GetWorld();
 	if (World != nullptr) {
 	AMatrixPawn* Pawn = Cast<AMatrixPawn>(UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn());
@@ -72,16 +76,17 @@ void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* Touc
 
 	if (!OwnerGrid->GetFreeze()) {
 		if (OwnerGrid->Verificar(this)) {
-			Sprite->SetSprite(FirstSprite);
+			Sprite->SetSprite(ShineSprite);
 			OwnerGrid->SetFreeze(true);
 			UWorld* World = GetWorld();
 
 			if (World) {
-				GetWorldTimerManager().SetTimer(ShowClicked, this, &AMatrixGame::Wait, 0.5f, true);
-
+				GetWorldTimerManager().SetTimer(ShowClicked, this, &AMatrixGame::Wait, 1.0f, true);
+				Sprite->SetSprite(ShineSprite);
+				
+				UE_LOG(LogTemp, Warning, TEXT("Certo!"));
 			}
-		}
-		else {
+		} else {
 			UE_LOG(LogTemp, Warning, TEXT("GameOver!"));
 			
 		}
@@ -89,7 +94,7 @@ void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* Touc
 }
 
 void AMatrixGame::Wait() {
-	Sprite->SetSprite(ShineSprite);
+	Sprite->SetSprite(FirstSprite);
 	OwnerGrid->SetFreeze(false);
 }
 
