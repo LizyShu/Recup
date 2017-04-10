@@ -112,24 +112,42 @@ bool AMGrid::GetFreeze() {
 
 void AMGrid::Pisca() {
 
-	int Random = FMath::RandRange(0, 8);
+	int Random = FMath::RandRange(0, 2);
+	int Random2 = FMath::RandRange(3, 5);
+	int Random3 = FMath::RandRange(6, 8);
 	
 
 	//if (!bTurned) {
-		
+	if (Random) {
 		Sequence.Add(Random);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
 		bFreeze = true;
-	
+	}
+	if (Random2) {
+
+		Sequence.Add(Random2);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+	}
+	if (Random3) {
+
+		Sequence.Add(Random3);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+	}
 
 
 	UWorld* World = GetWorld();
 	if (World) {
-		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+		Show();
+		//GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
 		Random++;
-
 	}
 
 }
@@ -188,7 +206,7 @@ void AMGrid::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 	if ((OtherActor != nullptr) && (OtherActor->IsA(AMatrixPawn::StaticClass()))) {
 		AMatrixPawn* Grid = Cast<AMatrixPawn>(OtherActor);
 		UWorld* World = GetWorld();
-		if (Grid->GetPonto() == 100 && World != nullptr) {
+		if (Grid->GetPonto() == 300 && World != nullptr) {
 			UGameplayStatics::OpenLevel(World, "Mapa2");
 		}
 	}

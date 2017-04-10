@@ -125,22 +125,52 @@ bool AMGrid2::GetFreeze() {
 
 void AMGrid2::Pisca() {
 
-	int Random = FMath::RandRange(0, 8);
+	int Random = FMath::RandRange(0, 4);
+	int Random2 = FMath::RandRange(5, 9);
+	int Random3 = FMath::RandRange(10, 12);
+	int Random4 = FMath::RandRange(13, 15);
 
 
 	//if (!bTurned) {
 
-	Sequence.Add(Random);
-	Index = 0;
-	bLight = false;
-	NumOfClicks = 0;
-	bFreeze = true;
+	if (Random) {
+		Sequence.Add(Random);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+	}
+	if (Random2) {
+
+		Sequence.Add(Random2);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+	}
+	if (Random3) {
+
+		Sequence.Add(Random3);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+	}
+	if (Random4) {
+
+		Sequence.Add(Random3);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+	}
 
 
 
 	UWorld* World = GetWorld();
 	if (World) {
-		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid2::Show, 1.0f, true);
+		Show();
+		//GetWorldTimerManager().SetTimer(MCard, this, &AMGrid2::Show, 1.0f, true);
 		Random++;
 
 	}

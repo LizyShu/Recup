@@ -65,10 +65,10 @@ void AMatrixGame::SetOwnerGrid2(class AMGrid2* Grid2) {
 void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
 	UE_LOG(LogTemp, Warning, TEXT("It works!"));
 
-	/*UWorld* World = GetWorld();
+	UWorld* World = GetWorld();
 	if (World != nullptr) {
 	AMatrixPawn* Pawn = Cast<AMatrixPawn>(UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn());
-	}*/
+	}
 
 	if (!OwnerGrid->GetFreeze()) {
 		if (OwnerGrid->Verificar(this)) {
