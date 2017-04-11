@@ -120,7 +120,7 @@ void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* Touc
 
 void AMatrixGame::Wait() {
 	Sprite->SetSprite(FirstSprite);
-	OwnerGrid2->SetFreeze(true);
+	OwnerGrid->SetFreeze(false);
 
 }
 
