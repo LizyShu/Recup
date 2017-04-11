@@ -29,6 +29,7 @@ public:
 	void SetOwnerGrid2(class AMGrid2* Grid2);
 
 
+
 private:
 
 	UPROPERTY(EditAnywhere)
@@ -43,6 +44,7 @@ private:
 
 		class AMGrid* OwnerGrid;
 		class AMGrid2* OwnerGrid2;
+
 
 	UPROPERTY(EditAnywhere)
 		int Index;

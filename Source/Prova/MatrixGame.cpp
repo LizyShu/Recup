@@ -80,6 +80,8 @@ void AMatrixGame::SetOwnerGrid2(class AMGrid2* Grid2) {
 	OwnerGrid2 = Grid2;
 }
 
+
+
 void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
 	ChangeSprite();
 	//UE_LOG(LogTemp, Warning, TEXT("It works!"));
@@ -97,7 +99,7 @@ void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* Touc
 			UWorld* World = GetWorld();
 
 			if (World) {
-				GetWorldTimerManager().SetTimer(ShowClicked, this, &AMatrixGame::Wait, 1.0f, true);
+				GetWorldTimerManager().SetTimer(ShowClicked, this, &AMatrixGame::Wait, 0.5f, true);
 				Sprite->SetSprite(ShineSprite);
 				UE_LOG(LogTemp, Warning, TEXT("Certo!"));
 			}

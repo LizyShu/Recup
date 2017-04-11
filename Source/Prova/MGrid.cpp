@@ -122,25 +122,12 @@ void AMGrid::Pisca() {
 	//if (!bTurned) {
 	if (Random) {
 		Sequence.Add(Random);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
 	}if (Random2) {
 
 		Sequence.Add(Random2);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
 	}
 	if (Random3) {
-
 		Sequence.Add(Random3);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
 	}
 
 

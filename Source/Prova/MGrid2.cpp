@@ -126,33 +126,14 @@ void AMGrid2::Pisca() {
 	//if (!bTurned) {
 	if (Random) {
 		Sequence.Add(Random);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
 	}if (Random2) {
-
 		Sequence.Add(Random2);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
 	}
 	if (Random3) {
-
 		Sequence.Add(Random3);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
 	}
 	if (Random4) {
-
 		Sequence.Add(Random4);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
 	}
 
 
@@ -205,7 +186,8 @@ bool AMGrid2::Verificar(class AMatrixGame * Click)
 				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn();
 				AMatrixPawn* MatrixPawn = Cast<AMatrixPawn>(MPawn);
 				MatrixPawn->SetPonto(MatrixPawn->GetPonto() + 100);
-				UE_LOG(LogTemp, Warning, TEXT("Pontos: %d"));
+				UGameplayStatics::OpenLevel(World, "Mapa3");
+				UE_LOG(LogTemp, Warning, TEXT("Foi Level 3!"));
 			}
 		}
 		return true;
