@@ -38,8 +38,12 @@ private:
 	UPROPERTY(EditAnywhere)
 		class UPaperSprite* ShineSprite;
 
+		TSubclassOf<class UUserWidget> GameOver;
+
+
 		class AMGrid* OwnerGrid;
 		class AMGrid2* OwnerGrid2;
+
 	UPROPERTY(EditAnywhere)
 		int Index;
 	FTimerHandle ShowClicked;

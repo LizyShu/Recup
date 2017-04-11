@@ -4,8 +4,17 @@
 #include "MatrixGame.h"
 #include "MatrixPawn.h"
 #include "MGrid.h"
+#include "MGrid2.h"
 #include "PaperSpriteComponent.h"
 #include "PaperSprite.h"
+#include "Blueprint/UserWidget.h"
+#include "Runtime/UMG/Public/UMG.h"
+#include "Runtime/UMG/Public/UMGStyle.h"
+#include "Runtime/UMG/Public/Slate/SObjectWidget.h"
+#include "Runtime/UMG/Public/IUMGModule.h"
+#include "Runtime/UMG/Public/Blueprint/UserWidget.h"
+#include "Runtime/UMG/Public/Blueprint/WidgetBlueprintLibrary.h"
+
 
 
 // Sets default values
@@ -18,6 +27,13 @@ AMatrixGame::AMatrixGame()
 	Sprite->SetSprite(FirstSprite);
 	Sprite->OnInputTouchBegin.AddDynamic(this, &AMatrixGame::OnTouchBegin);
 	RootComponent = Sprite;
+
+	ConstructorHelpers::FClassFinder<UUserWidget> Widget (TEXT("WidgetBlueprint'/Game/Blueprints/GameOver.GameOver_C'"));
+	if (Widget.Succeeded()) {
+		GameOver = Widget.Class;
+	}
+
+
 
 
 }
@@ -83,18 +99,28 @@ void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* Touc
 			if (World) {
 				GetWorldTimerManager().SetTimer(ShowClicked, this, &AMatrixGame::Wait, 1.0f, true);
 				Sprite->SetSprite(ShineSprite);
-				
 				UE_LOG(LogTemp, Warning, TEXT("Certo!"));
 			}
-		} else {
-			UE_LOG(LogTemp, Warning, TEXT("GameOver!"));
+		} else if (World != nullptr) {
 			
+			APlayerController* PlayerController = UGameplayStatics::GetPlayerController(World, 0);
+			if (PlayerController && GameOver != NULL) {
+				PlayerController->SetPause(true);
+				UUserWidget* UserW = UWidgetBlueprintLibrary::Create(World, GameOver, PlayerController);
+				if (UserW) {
+					UserW->AddToViewport();
+				}
+			}
+				UE_LOG(LogTemp, Warning, TEXT("GameOver!"));
 		}
 	}
 }
 
+
+
 void AMatrixGame::Wait() {
 	Sprite->SetSprite(FirstSprite);
-	OwnerGrid->SetFreeze(false);
+	OwnerGrid2->SetFreeze(true);
+
 }
 

@@ -46,12 +46,10 @@ void AMGrid2::BeginPlay()
 		AMatrixGame* C7 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
 		AMatrixGame* C8 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
 		AMatrixGame* C9 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
-		AMatrixGame* C10 = World->SpawnActor<AMatrixGame>(Um, FVector(800.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
-		AMatrixGame* C11 = World->SpawnActor<AMatrixGame>(Um, FVector(800.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
-		AMatrixGame* C12 = World->SpawnActor<AMatrixGame>(Um, FVector(800.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
-		AMatrixGame* C13 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
-		AMatrixGame* C14 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
-		AMatrixGame* C15 = World->SpawnActor<AMatrixGame>(Um, FVector(600.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C10 = World->SpawnActor<AMatrixGame>(Um, FVector(400.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C11 = World->SpawnActor<AMatrixGame>(Um, FVector(400.0f, 0.0f, 200.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMatrixGame* C12 = World->SpawnActor<AMatrixGame>(Um, FVector(400.0f, 0.0f, -200.0f), FRotator::ZeroRotator, SpawnParameters);
+	
 
 		C1->SetIndex(0);
 		C2->SetIndex(1);
@@ -65,9 +63,7 @@ void AMGrid2::BeginPlay()
 		C10->SetIndex(9);
 		C11->SetIndex(10);
 		C12->SetIndex(11);
-		C13->SetIndex(12);
-		C14->SetIndex(13);
-		C15->SetIndex(14);
+		
 
 		C1->SetOwnerGrid2(this);
 		C2->SetOwnerGrid2(this);
@@ -81,9 +77,7 @@ void AMGrid2::BeginPlay()
 		C10->SetOwnerGrid2(this);
 		C11->SetOwnerGrid2(this);
 		C12->SetOwnerGrid2(this);
-		C13->SetOwnerGrid2(this);
-		C14->SetOwnerGrid2(this);
-		C15->SetOwnerGrid2(this);
+		
 
 		Matrix.Add(C1);
 		Matrix.Add(C2);
@@ -97,9 +91,7 @@ void AMGrid2::BeginPlay()
 		Matrix.Add(C10);
 		Matrix.Add(C11);
 		Matrix.Add(C12);
-		Matrix.Add(C13);
-		Matrix.Add(C14);
-		Matrix.Add(C15);
+	
 
 
 		Pisca();
@@ -125,37 +117,38 @@ bool AMGrid2::GetFreeze() {
 
 void AMGrid2::Pisca() {
 
-	int Random = FMath::RandRange(0, 14);
+	int Random = FMath::RandRange(0, 2);
+	int Random2 = FMath::RandRange(3, 5);
+	int Random3 = FMath::RandRange(6, 8);
+	int Random4 = FMath::RandRange(9, 11);
 
 
 	//if (!bTurned) {
-
 	if (Random) {
 		Sequence.Add(Random);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
 		bFreeze = true;
-	}
-	if (Random) {
+	}if (Random2) {
 
-		Sequence.Add(Random);
+		Sequence.Add(Random2);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random) {
+	if (Random3) {
 
-		Sequence.Add(Random);
+		Sequence.Add(Random3);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random) {
+	if (Random4) {
 
-		Sequence.Add(Random);
+		Sequence.Add(Random4);
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;

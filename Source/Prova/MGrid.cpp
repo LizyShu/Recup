@@ -41,8 +41,10 @@ void AMGrid::BeginPlay()
 
 	UWorld* World = GetWorld();
 	UE_LOG(LogTemp, Warning, TEXT("Foi no BeginPlay"));
+	FActorSpawnParameters SpawnParameters;
+
 	if (World) {
-		FActorSpawnParameters SpawnParameters;
+
 		AMatrixGame* C1 = World->SpawnActor<AMatrixGame>(Um, FVector(1000.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
 		/*if (C1 != nullptr) {
 			UE_LOG(LogTemp, Warning, TEXT("Foi no c1"));
@@ -112,9 +114,9 @@ bool AMGrid::GetFreeze() {
 
 void AMGrid::Pisca() {
 
-	int Random = FMath::RandRange(0, 8);
-	int Random2 = FMath::RandRange(0, 8);
-	int Random3 = FMath::RandRange(0, 8);
+	int Random = FMath::RandRange(0, 2);
+	int Random2 = FMath::RandRange(3, 5);
+	int Random3 = FMath::RandRange(6, 8);
 
 
 	//if (!bTurned) {
@@ -124,8 +126,7 @@ void AMGrid::Pisca() {
 		bLight = false;
 		NumOfClicks = 0;
 		bFreeze = true;
-	}
-	if (Random2 != Random) {
+	}if (Random2) {
 
 		Sequence.Add(Random2);
 		Index = 0;
@@ -133,7 +134,7 @@ void AMGrid::Pisca() {
 		NumOfClicks = 0;
 		bFreeze = true;
 	}
-	if (Random3 != Random2 != Random) {
+	if (Random3) {
 
 		Sequence.Add(Random3);
 		Index = 0;
@@ -190,6 +191,9 @@ bool AMGrid::Verificar(class AMatrixGame * Click)
 				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn();
 				AMatrixPawn* MatrixPawn = Cast<AMatrixPawn>(MPawn);
 				MatrixPawn->SetPonto(MatrixPawn->GetPonto() + 100);
+				UGameplayStatics::OpenLevel(World, "Mapa2");
+				UE_LOG(LogTemp, Warning, TEXT("Foi Level 2!"));
+
 			}
 		}
 		return true;
