@@ -23,7 +23,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 
-	bool Verificar(class AMatrixGame* Click);
+	bool Verificar2(class AMatrixGame* Click);
 	void SetFreeze(bool NewFreeze);
 	bool GetFreeze();
 

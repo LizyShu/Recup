@@ -122,8 +122,8 @@ void AMGrid::Pisca() {
 	//if (!bTurned) {
 	if (Random) {
 		Sequence.Add(Random);
-	}if (Random2 != Random) {
-
+	}
+	if (Random2 != Random) {
 		Sequence.Add(Random2);
 	}
 	if (Random3 != Random2 != Random) {

@@ -53,10 +53,10 @@ private:
 	
 	UFUNCTION()
 		void OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent);
-	UFUNCTION()
-		void OnTouchBegin2(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent);
+	/*UFUNCTION()
+		void OnTouchBegin2(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent);*/
 
 	void Wait();
-	void Wait2();
+	//void Wait2();
 	
 };

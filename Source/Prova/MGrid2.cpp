@@ -141,7 +141,6 @@ void AMGrid2::Pisca() {
 	UWorld* World = GetWorld();
 	if (World) {
 		Show();
-		//GetWorldTimerManager().SetTimer(MCard, this, &AMGrid2::Show, 1.0f, true);
 		Random++;
 
 	}
@@ -175,7 +174,7 @@ void AMGrid2::Show() {
 
 }
 
-bool AMGrid2::Verificar(class AMatrixGame * Click)
+bool AMGrid2::Verificar2(class AMatrixGame * Click)
 {
 
 	if (Sequence[NumOfClicks] == Click->GetIndex()) {
@@ -186,14 +185,12 @@ bool AMGrid2::Verificar(class AMatrixGame * Click)
 				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn();
 				AMatrixPawn* MatrixPawn = Cast<AMatrixPawn>(MPawn);
 				MatrixPawn->SetPonto(MatrixPawn->GetPonto() + 100);
-				UGameplayStatics::OpenLevel(World, "Mapa3");
-				UE_LOG(LogTemp, Warning, TEXT("Foi Level 3!"));
+				//UGameplayStatics::OpenLevel(World, "Mapa3");
+				//UE_LOG(LogTemp, Warning, TEXT("Foi Level 3!"));
 			}
 		}
 		return true;
 	}
-
-
 	return false;
 }
 

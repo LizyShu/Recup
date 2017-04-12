@@ -118,7 +118,7 @@ void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* Touc
 	}
 }
 
-void AMatrixGame::OnTouchBegin2(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
+/*void AMatrixGame::OnTouchBegin2(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
 	ChangeSprite();
 
 	UWorld* World = GetWorld();
@@ -127,7 +127,7 @@ void AMatrixGame::OnTouchBegin2(ETouchIndex::Type type, UPrimitiveComponent* Tou
 	}
 
 	if (!OwnerGrid2->GetFreeze()) {
-		if (OwnerGrid2->Verificar(this)) {
+		if (OwnerGrid2->Verificar2(this)) {
 			Sprite->SetSprite(ShineSprite);
 			OwnerGrid2->SetFreeze(true);
 			UWorld* World = GetWorld();
@@ -151,7 +151,7 @@ void AMatrixGame::OnTouchBegin2(ETouchIndex::Type type, UPrimitiveComponent* Tou
 			UE_LOG(LogTemp, Warning, TEXT("GameOver!"));
 		}
 	}
-}
+}*/
 
 
 
@@ -161,8 +161,8 @@ void AMatrixGame::Wait() {
 	OwnerGrid->SetFreeze(false);
 }
 
-void AMatrixGame::Wait2() {
+/*void AMatrixGame::Wait2() {
 	Sprite->SetSprite(FirstSprite);
 	OwnerGrid2->SetFreeze(false);
-}
+}*/
 
