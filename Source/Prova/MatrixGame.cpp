@@ -118,11 +118,51 @@ void AMatrixGame::OnTouchBegin(ETouchIndex::Type type, UPrimitiveComponent* Touc
 	}
 }
 
+void AMatrixGame::OnTouchBegin2(ETouchIndex::Type type, UPrimitiveComponent* TouchedComponent) {
+	ChangeSprite();
+
+	UWorld* World = GetWorld();
+	if (World != nullptr) {
+		AMatrixPawn* Pawn = Cast<AMatrixPawn>(UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn());
+	}
+
+	if (!OwnerGrid2->GetFreeze()) {
+		if (OwnerGrid2->Verificar(this)) {
+			Sprite->SetSprite(ShineSprite);
+			OwnerGrid2->SetFreeze(true);
+			UWorld* World = GetWorld();
+
+			if (World) {
+				GetWorldTimerManager().SetTimer(ShowClicked, this, &AMatrixGame::Wait2, 0.5f, true);
+				Sprite->SetSprite(ShineSprite);
+				UE_LOG(LogTemp, Warning, TEXT("Certo!"));
+			}
+		}
+		else if (World != nullptr) {
+
+			APlayerController* PlayerController = UGameplayStatics::GetPlayerController(World, 0);
+			if (PlayerController && GameOver != NULL) {
+				PlayerController->SetPause(true);
+				UUserWidget* UserW = UWidgetBlueprintLibrary::Create(World, GameOver, PlayerController);
+				if (UserW) {
+					UserW->AddToViewport();
+				}
+			}
+			UE_LOG(LogTemp, Warning, TEXT("GameOver!"));
+		}
+	}
+}
+
+
 
 
 void AMatrixGame::Wait() {
 	Sprite->SetSprite(FirstSprite);
 	OwnerGrid->SetFreeze(false);
+}
 
+void AMatrixGame::Wait2() {
+	Sprite->SetSprite(FirstSprite);
+	OwnerGrid2->SetFreeze(false);
 }
 
