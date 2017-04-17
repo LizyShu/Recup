@@ -36,4 +36,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		int Ponto = 100.f;
+
+
+	void SaveGame();
+	void LoadGame();
 };

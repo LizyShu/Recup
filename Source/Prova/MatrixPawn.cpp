@@ -42,6 +42,9 @@ void AMatrixPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	InputComponent->BindAction("Save", IE_Pressed, this, &AMatrixPawn::SaveGame);
+	InputComponent->BindAction("Save", IE_Pressed, this, &AMatrixPawn::LoadGame);
+
 }
 
 void AMatrixPawn::SetPonto(int NewPonto) {
@@ -50,5 +53,22 @@ void AMatrixPawn::SetPonto(int NewPonto) {
 
 int AMatrixPawn::GetPonto() {
 	return Ponto;
+}
+
+void AMatrixPawn::SaveGame() {
+	UE_LOG(LogTemp, Warning, TEXT("SaveGame"));
+	UMySaveGame*SaveGameInstance = Cast<UMySaveGame>(UGameplayStatics::CreateSaveGameObject(UMySaveGame::StaticClass()));
+	SaveGameInstance->PlayerName = "ggg";
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveGameInstance->SaveSlotName, SaveGameInstance->UserIndex);
+	UE_LOG(LogTemp, Warning, TEXT("Game Saved"));
+
+}
+void AMatrixPawn::LoadGame() {
+	UE_LOG(LogTemp, Warning, TEXT("LoadGame"));
+	UMySaveGame*LoadGameInstance = Cast<UMySaveGame>(UGameplayStatics::CreateSaveGameObject(UMySaveGame::StaticClass()));
+	LoadGameInstance = Cast<UMySaveGame>(UGameplayStatics::LoadGameFromSlot(LoadGameInstance->SaveSlotName, LoadGameInstance->UserIndex));
+
+	FString Nome = LoadGameInstance->PlayerName;
+	UE_LOG(LogTemp, Warning, TEXT("PlayerName: %s"), Nome);
 }
 
